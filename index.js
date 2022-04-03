@@ -13,9 +13,8 @@
 
     if (existenNpm().some((i) => !i)) await descargarNpmRpc()
     else console.log("4. Si estan instalados los NPM necesarios en este proyecto.")
-
-
     console.log("5. Revisando si existe la carpeta 'rpc'...")
+
     if (!revisarCarpeta())
         return console.log("6. No existe la carpeta 'rpc', en este caso no puedo hacer nada automáticamente para arreglarlo, te recomiendo que descargues nuevamente el proyecto\n- https://github.com/Xertozer/TutorialRPC")
     console.log("7. Si existe la carpeta 'rpc', revisando si existe el archivo 'rpc.js'")
@@ -46,7 +45,9 @@
 
     function existenNpm() {
         const cmd = (i) => require("child_process").execSync(i)
-        cmd(`cd ${__dirname}`)
+        for (const dir of directorio())
+            cmd(`cd ${dir}`)
+
         const lista = cmd("npm list").toString()
         return [
             lista.includes("discord-rpc@4.0.1"),
@@ -56,7 +57,9 @@
 
     async function descargarNpmRpc() {
         const cmd = (i) => require("child_process").execSync(i)
-        cmd(`cd ${__dirname}`)
+        for (const dir of directorio())
+            cmd(`cd ${dir}`)
+
         cmd("npm i discord-rpc@4.0.1")
         cmd("npm i yaml@1.10.2")
         console.clear()
@@ -67,5 +70,15 @@
         console.log("2. Si existe la función 'require'.")
         console.log("3. Revisando si estan instalados los NPM 'yaml' y 'discord-rpc'")
         console.log("4. No estan los NPM necesarios, se han descargado automáticamente.")
+    }
+
+
+    function directorio() {
+        let dir = __dirname
+        dir = dir.replace(/\\/g, "/")
+        dir = dir.split("/")
+        dir = dir.slice(3)
+
+        return dir
     }
 })()
