@@ -11,8 +11,10 @@
     console.log("2. Si existe la función 'require'.")
     console.log("3. Revisando si estan instalados los NPM 'yaml' y 'discord-rpc'")
 
-    if (existenNpm().some((i) => !i)) await descargarNpmRpc()
-    else console.log("4. Si estan instalados los NPM necesarios en este proyecto.")
+    if (existenNpm().some((i) => !i)) {
+        const descargado = await descargarNpmRpc()
+        if (!descargado) return console.log("4. No se pueden insatalar los NPM necesarios debido a que usas un path UNC (de forma entendible, la ubicación de este proyecto inicia con \\ y no con C:, D: o alguna variante así).")
+    } else console.log("4. Si estan instalados los NPM necesarios en este proyecto.")
     console.log("5. Revisando si existe la carpeta 'rpc'...")
 
     if (!revisarCarpeta())
@@ -45,8 +47,6 @@
 
     function existenNpm() {
         const cmd = (i) => require("child_process").execSync(i)
-        cmd(`cd ${__dirname}`)
-
         const lista = cmd("npm list").toString()
         return [
             lista.includes("discord-rpc@4.0.1"),
@@ -56,17 +56,12 @@
 
     async function descargarNpmRpc() {
         const cmd = (i) => require("child_process").execSync(i)
-        cmd(`cd ${__dirname}`)
-
+        if (__dirname.startsWith("\\")) return false
+        
         cmd("npm i discord-rpc@4.0.1")
         cmd("npm i yaml@1.10.2")
-        console.clear()
-        console.log("-------------------------------------------------------")
-        console.log("Este proceso es automático para evitar problemas de ejecución.")
-        console.log(" ")
-        console.log("1. Revisando si el 'require' existe...")
-        console.log("2. Si existe la función 'require'.")
-        console.log("3. Revisando si estan instalados los NPM 'yaml' y 'discord-rpc'")
-        console.log("4. No estan los NPM necesarios, se han descargado automáticamente.")
+        console.log("4. No estan los NPM necesarios, se estan descargando automáticamente.")
+        
+        return true
     }
 })()
