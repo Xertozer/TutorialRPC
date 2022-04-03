@@ -1,11 +1,11 @@
 # Id. que consigues en https://discord.dev/
-id-cliente: "887058336405676102"
+id-cliente: "ID_AQUI"
 
 # Texto que se mostrará en tu perfil
 texto:
   # Nota: No puedes poner 1 solo cáracter en las líneas.
-  primera-linea: "11" # En caso de no necesitar una línea, dejarlo vacio
-  segunda-linea: "22" # Por ejemplo
+  primera-linea: "" # En caso de no necesitar una línea, dejarlo vacio
+  segunda-linea: "" # Por ejemplo
                           # segunda-linea: "" 
 
 # Imágenes a mostrar
