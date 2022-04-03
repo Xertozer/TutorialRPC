@@ -1,0 +1,27 @@
+# Id. que consigues en https://discord.dev/
+id-cliente: "887058336405676102"
+
+# Texto que se mostrará en tu perfil
+texto:
+  # Nota: No puedes poner 1 solo cáracter en las líneas.
+  primera-linea: "11" # En caso de no necesitar una línea, dejarlo vacio
+  segunda-linea: "22" # Por ejemplo
+                          # segunda-linea: "" 
+
+# Imágenes a mostrar
+imagen:
+  grande: "" # nombre de la imagen que subiste a discord.dev
+  pequeño: "" # dejar vacio cualquiera para no utilizar
+
+# En caso de no necesitar botones, borrar toda esta sección y dejarlo como 'null'
+# Por ejemplo
+# botones: null
+botones:
+  - # boton 1
+    nombre: "" 
+    enlace: ""
+  - # boton 2
+    nombre: "" # en caso de no necesitar un segundo boton
+    enlace: "" # dejar nombre y enlace vacio, por ejemplo
+               # nombre: ""
+               # enlace: ""
