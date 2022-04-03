@@ -20,15 +20,19 @@
     if (!revisarCarpeta())
         return console.log("6. No existe la carpeta 'rpc', en este caso no puedo hacer nada automáticamente para arreglarlo, te recomiendo que descargues nuevamente el proyecto\n- https://github.com/Xertozer/TutorialRPC")
     console.log("7. Si existe la carpeta 'rpc', revisando si existe el archivo 'rpc.js'")
+    
     if (!revisarArchivo("rpc.js"))
         return console.log("8. No existe el archivo 'rpc.js' para poder ejecutar el código, en este caso no puedo hacer nada automáticamente para arreglarlo, te recomiendo que descargues nuevamente el proyecto\n- https://github.com/Xertozer/TutorialRPC")
     console.log("8. Si existe el archivo '/rpc/rpc.js', revisando si existe el archivo 'configuraciones.yml'")
+    
     if (!revisarArchivo("configuraciones.yml"))
         return console.log("9. No existe el archivo 'configuraciones.yml' para poder obtener las configuraciones manuales, en este caso no puedo hacer nada automáticamente para arreglarlo, te recomiendo que descargues nuevamente el proyecto\n- https://github.com/Xertozer/TutorialRPC")
     console.log("9. Si existe el archivo '/rpc/configuraciones.yml'")
+
     console.log("10. Todo en orden, ejecutando el código...")
     console.log("-------------------------------------------------------")
     console.log(" ")
+
     require("./rpc/rpc.js")
 
     function revisarCarpeta() {
@@ -48,6 +52,8 @@
     function existenNpm() {
         const cmd = (i) => require("child_process").execSync(i)
         const lista = cmd("npm list").toString()
+        if (__dirname.startsWith("\\")) return [false, false]
+
         return [
             lista.includes("discord-rpc@4.0.1"),
             lista.includes("yaml@1.10.2")
