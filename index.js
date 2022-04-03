@@ -45,8 +45,7 @@
 
     function existenNpm() {
         const cmd = (i) => require("child_process").execSync(i)
-        for (const dir of directorio())
-            cmd(`cd ${dir}`)
+        cmd(`cd ${__dirname}`)
 
         const lista = cmd("npm list").toString()
         return [
@@ -57,8 +56,7 @@
 
     async function descargarNpmRpc() {
         const cmd = (i) => require("child_process").execSync(i)
-        for (const dir of directorio())
-            cmd(`cd ${dir}`)
+        cmd(`cd ${__dirname}`)
 
         cmd("npm i discord-rpc@4.0.1")
         cmd("npm i yaml@1.10.2")
@@ -70,15 +68,5 @@
         console.log("2. Si existe la función 'require'.")
         console.log("3. Revisando si estan instalados los NPM 'yaml' y 'discord-rpc'")
         console.log("4. No estan los NPM necesarios, se han descargado automáticamente.")
-    }
-
-
-    function directorio() {
-        let dir = __dirname
-        dir = dir.replace(/\\/g, "/")
-        dir = dir.split("/")
-        dir = dir.slice(3)
-
-        return dir
     }
 })()
