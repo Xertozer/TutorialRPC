@@ -30,7 +30,6 @@
     console.log(" ")
     require("./rpc/rpc.js")
 
-
     function revisarCarpeta() {
         const fs = require("fs")
         return fs.readdirSync(".").includes("rpc")
@@ -47,6 +46,7 @@
 
     function existenNpm() {
         const cmd = (i) => require("child_process").execSync(i)
+        cmd(`cd ${__dirname}`)
         const lista = cmd("npm list").toString()
         return [
             lista.includes("discord-rpc@4.0.1"),
@@ -56,6 +56,7 @@
 
     async function descargarNpmRpc() {
         const cmd = (i) => require("child_process").execSync(i)
+        cmd(`cd ${__dirname}`)
         cmd("npm i discord-rpc@4.0.1")
         cmd("npm i yaml@1.10.2")
         console.clear()
